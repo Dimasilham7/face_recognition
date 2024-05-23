@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <style>
+        #video {
+            width: 640px;
+            height: 480px;
+        }
+        #resultImage {
+            width: 640px;
+            height: 480px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+    <video id="video" autoplay></video>
+    <button id="captureButton">Capture</button>
+    <button id="captureWithNameButton" onclick="toggleCaptureButtons()">Capture with Name</button>
+    <input type="text" id="nameInput" placeholder="Enter Name" style="display: none;">
+    <div>
+        <p id="name"></p>
+        <img id="resultImage" alt="Result Image">
+    </div>
+    <script src="static/script.js"></script>
+</body>
+</html>
