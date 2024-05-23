@@ -15,6 +15,11 @@ This command will install all the necessary packages listed in the requirements.
 
 ### Running the Website
 
+#### 2 way to add data of your photo to the dataset
+
+1. you can add manually to the folder ID, remember the name of the file is the name of yours, so please double check it. and ensure your name written correctly on the file name.
+2. later on, on the website, you can add your photo if your face undefined/unknown.
+
 To run the website and access the interface, navigate to the master branch, pull all file from master branch run sqlite_data.py to create the database file with this command:
 
 python sqlite_data.py
