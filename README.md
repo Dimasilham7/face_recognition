@@ -12,16 +12,19 @@ pip install -r requirements.txt
 This command will install all the necessary packages listed in the requirements.txt file.
 
 ## Usage
-Running the Website
 
-To run the website and access the interface, navigate to the website folder and run the API_output.py file using Python:
+### Running the Website
+
+To run the website and access the interface, navigate to the master branch, pull all file from master branch and run the API_output.py file using Python:
 
 python API_output.py
 
 This will start the server, and you can access the website interface through your browser.
-Running the Raw Output
 
-If you prefer to run the application without the website interface, you can run the face_data.py file:
+
+### Running the Raw Output from python code (not from website)
+
+If you prefer to run the application without the website interface, you can run the face_data.py on raw branch, pull it out run the sqlite_data.py if you didnt have the database file then go to run the file with:
 
 python face_data.py
 
