@@ -15,7 +15,12 @@ This command will install all the necessary packages listed in the requirements.
 
 ### Running the Website
 
-To run the website and access the interface, navigate to the master branch, pull all file from master branch and run the API_output.py file using Python:
+To run the website and access the interface, navigate to the master branch, pull all file from master branch run sqlite_data.py to create the database file with this command:
+
+python sqlite_data.py
+
+
+after that you can run the API_output.py file using Python:
 
 python API_output.py
 
