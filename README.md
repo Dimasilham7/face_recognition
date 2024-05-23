@@ -36,3 +36,6 @@ python face_data.py
 ## Note
 
 Please note that after saving a new face, you may need to restart the server to ensure the changes take effect. This is a known limitation of the project.
+
+
+### you can check the challenge on docx file i've already created
