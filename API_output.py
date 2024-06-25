@@ -58,6 +58,18 @@ def get_employee_position_from_database(name):
     # Return position or default to 'Unknown' if not found
     return position[0] if position else 'Unknown'
 
+# Function to record attendance in the database
+def record_attendance(employee_id, check_in_time):
+    conn = sqlite3.connect('company.db')
+    c = conn.cursor()
+    
+    # Insert attendance record into the attendance table
+    c.execute("INSERT INTO attendance (employee_id, check_in_time) VALUES (?, ?)", (employee_id, check_in_time))
+    
+    # Commit the transaction and close connection
+    conn.commit()
+    conn.close()
+
 # Load the list of images
 folder_path = 'ID/'
 list_of_images = os.listdir(folder_path)
@@ -114,11 +126,17 @@ def upload():
         detected_name = known_face_names[first_match_index]
         employee_info = employee_data.get(detected_name, {})
         fatigue_status = "Fatigued" if is_fatigued() else "Not Fatigued"
+        
+        # Record attendance
+        employee_id = employee_info.get('employee_id', 'Unknown')
+        check_in_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        record_attendance(employee_id, check_in_time)
+
         return jsonify({
             'name': detected_name,
             'department': employee_info.get('department', 'Unknown'),
-            'employee_id': employee_info.get('employee_id', 'Unknown'),
-            'check_in': employee_info.get('check_in', 'Unknown'),
+            'employee_id': employee_id,
+            'check_in': check_in_time,
             'position': employee_info.get('position', 'Unknown'),
             'fatigue_status': fatigue_status
         })
@@ -137,6 +155,20 @@ def register():
     # Save the image in the 'ID' folder with the provided name
     image_path = os.path.join('ID', f"{name}.jpg")
     image.save(image_path)
+    
+    # Re-encode the new image and update the lists
+    image = face_recognition.load_image_file(image_path)
+    encoding = face_recognition.face_encodings(image)[0]
+    list_of_face_encoding.append(encoding)
+    known_face_names.append(name)
+
+    # Update employee data
+    employee_data[name] = {
+        'department': get_employee_department_from_database(name),
+        'employee_id': get_employee_id_from_database(name),
+        'check_in': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'position': get_employee_position_from_database(name)
+    }
     
     return jsonify({'message': 'Registration successful'})
 
