@@ -44,3 +44,13 @@ Please note that after saving a new face, you may need to restart the server to 
 
 
 ### you can check the challenge on docx file i've already created
+
+
+
+### new code:
+
+for visualization you can see from code visualization.py
+
+to run it you can do is:
+
+python visual.py
